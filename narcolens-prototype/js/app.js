@@ -139,7 +139,7 @@
       ['AI flags raised', s.flags.toLocaleString('en-US'), '<b>0.33%</b> of items screened'],
       ['Seizures confirmed (YTD)', s.seizures, 'lab-confirmed'],
       ['Extra false alarms', s.far.toFixed(1) + '%', 'target ≤ 5% per lane'],
-      ['Time to identify substance', s.idMin + ' min', 'vs. ~3 days lab turnaround']
+      ['Cases with an evidence record', String(S.cases.length), 'each with a time-stamped timeline']
     ];
     $('#kpis').innerHTML = k.map(function (x) {
       return '<div class="kpi"><div class="lbl">' + x[0] + '</div><div class="val">' + x[1] + '</div><div class="sub">' + x[2] + '</div></div>';

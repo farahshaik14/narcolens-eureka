@@ -77,9 +77,9 @@
     // dashboard
     'Bags & parcels screened today': 'الحقائب والطرود المفحوصة اليوم', 'AI flags raised': 'تنبيهات الذكاء الاصطناعي',
     'Seizures confirmed (YTD)': 'الضبطيات المؤكدة (منذ بداية العام)', 'Extra false alarms': 'الإنذارات الكاذبة الإضافية',
-    'Time to identify substance': 'زمن تحديد المادة', 'across 7 entry points': 'عبر 7 منافذ دخول',
+    'Cases with an evidence record': 'قضايا لها سجل أدلة', 'across 7 entry points': 'عبر 7 منافذ دخول',
     'of items screened': 'من المواد المفحوصة', 'lab-confirmed': 'مؤكدة مخبرياً', 'target ≤ 5% per lane': 'الهدف ≤ 5% لكل مسار',
-    'vs. ~3 days lab turnaround': 'مقابل ~3 أيام في المختبر',
+    'each with a time-stamped timeline': 'لكل منها سجل زمني موثّق',
     'UAE entry points running NarcoLens': 'منافذ الدخول الإماراتية العاملة بنظام NarcoLens', 'Click a site to zoom in': 'انقر على موقع للتكبير',
     '● Live': '● مباشر', 'Bag / parcel cleared': 'حقيبة / طرد مُجاز', 'AI flag raised': 'تنبيه من الذكاء الاصطناعي',
     'Inspection queue': 'قائمة التفتيش', 'Live event log': 'سجل الأحداث المباشر', 'No open cases': 'لا توجد قضايا مفتوحة',
