@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>NarcoLens</title>
+<style>
+  @page { size: A4; margin: 19mm 16.5mm 21mm 16.5mm; }
+  @page wide { size: A4 landscape; margin: 10mm 10mm; }
+  * { box-sizing: border-box; }
+  html { font-family: "Times New Roman", "Liberation Serif", Times, serif; font-size: 10pt; line-height: 1.2; color: #000; }
+  body { margin: 0; }
+  p { margin: 0; text-align: justify; hyphens: auto; text-indent: 1.2em; }
+  p.ni, .ni { text-indent: 0; }
+  /* title block spans both columns */
+  .titleblock { text-align: center; margin-bottom: 5mm; }
+  .titleblock h1 { font-size: 22pt; line-height: 1.12; font-weight: 400; margin: 0 0 4mm; }
+  .titleblock .au { font-size: 11pt; margin-bottom: 1mm; }
+  .titleblock .af { font-size: 10pt; font-style: italic; line-height: 1.2; }
+  .cols { column-count: 2; column-gap: 6.3mm; column-fill: auto; }
+  .abstract { font-size: 9pt; font-weight: 700; line-height: 1.15; text-align: justify; margin-bottom: 3mm; hyphens: auto; }
+  .abstract i { font-style: italic; }
+  h2 { font-size: 10pt; font-weight: 400; text-align: center; text-transform: uppercase; font-variant: small-caps; text-transform: none; letter-spacing: 0; margin: 4mm 0 1.6mm; break-after: avoid; }
+  h2 span.sc { font-variant: small-caps; }
+  h3 { font-size: 10pt; font-weight: 400; font-style: italic; margin: 2.4mm 0 1mm; break-after: avoid; }
+  figure { margin: 2mm 0 3mm; break-inside: avoid; text-align: center; }
+  figcaption { font-size: 8pt; line-height: 1.15; text-align: justify; margin-top: 1.2mm; }
+  figcaption.c { text-align: center; }
+  .tcap { font-size: 8pt; text-align: center; font-variant: small-caps; line-height: 1.2; margin: 2mm 0 1mm; break-after: avoid; }
+  .tcap .tn { display: block; }
+  table { border-collapse: collapse; width: 100%; font-size: 8pt; margin-bottom: 2.5mm; break-inside: avoid; }
+  th, td { padding: .6mm 1.2mm; text-align: left; vertical-align: middle; }
+  thead th { border-top: .8pt solid #000; border-bottom: .5pt solid #000; font-weight: 700; }
+  tbody tr:last-child td { border-bottom: .8pt solid #000; }
+  .r { text-align: right; white-space: nowrap; } .c { text-align: center; }
+  .eq { display: grid; grid-template-columns: 1fr auto; align-items: center; margin: 1.5mm 0 2mm; }
+  .eq .e { text-align: center; font-size: 10pt; } .eq .n { font-size: 10pt; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6mm; }
+  .grid2 img { width: 100%; aspect-ratio: 1.55; object-fit: cover; display: block; border: .3pt solid #888; }
+  .grid2 small { display: block; font-size: 7pt; text-align: center; margin-top: .4mm; }
+  .refs { font-size: 8pt; line-height: 1.15; }
+  .refs ol { list-style: none; margin: 0; padding: 0; counter-reset: r; }
+  .refs li { counter-increment: r; padding-left: 7mm; text-indent: -7mm; margin-bottom: 1mm; text-align: justify; }
+  .refs li:before { content: "[" counter(r) "]"; display: inline-block; width: 7mm; text-indent: 0; }
+  .note { font-size: 8pt; text-align: justify; margin-top: 2.5mm; border-top: .5pt solid #000; padding-top: 1.2mm; }
+  .wide-page { page: wide; break-before: page; break-after: page; }
+  .wide-page img { width: 100%; max-height: 160mm; object-fit: contain; display: block; }
+  .wide-page figcaption { font-size: 9pt; text-align: center; margin-top: 3mm; }
+  sub, sup { line-height: 0; }
+</style></head><body>
+
+<div class="titleblock">
+  <h1>NarcoLens &mdash; AI-Assisted Substance Screening<br>for Police and Airport Customs</h1>
+  <div class="au">Farah Shaik and Riazat Rasool</div>
+  <div class="af">NarcoLens team &middot; Presight Eureka 3.0 &middot; Defense &amp; Policing</div>
+</div>
+
+<div class="cols">
+
+<div class="abstract"><i>Abstract</i>&mdash;Customs officers and police must reach a fast, defensible decision on every suspicious item, yet identifying a substance still depends on operator interpretation of X-ray images and on laboratory confirmation. NarcoLens proposes an intelligence layer for the scanners and inspection desks that customs already operate. It opens one case per bag or parcel and collects evidence from five modules: X-ray concealment segmentation, tablet and label verification, hyperspectral substance identification, prediction of emerging synthetic variants, and explainable risk fusion. The officer decides, and each action is recorded for laboratory referral. It is intended for customs officers, police anti-narcotics teams, supervisors and laboratory analysts. Federated learning aims to let sites improve together without sharing raw images. A working prototype demonstrates the full workflow on simulated data. On held-out synthetic tests, the X-ray model flagged all 311 concealment bags with 1.7% false alarms on clean bags, and the tablet model reached 99.8% accuracy on 1,200 images. Validation on real scanner data is the next step.</div>
+
+<h2>I.&ensp;<span class="sc">Introduction</span></h2>
+<p>The UAE already deploys advanced inspection systems, AI-driven risk analysis and K9 units at its borders. Dubai Customs reported 502 seizures, 406 kg of narcotic and psychotropic substances and more than 2.3 million tablets between January and May 2026 [1], which indicates the volume of findings that officers must assess. Concealment methods continue to change, from tablets pressed into clothing buttons to drugs blended into protein powder.</p>
+<p><i>Intended users.</i> NarcoLens is designed for the people who make and review these decisions: customs inspectors and X-ray operators who screen items, police anti-narcotics officers who handle seizures, supervisors who approve them, laboratory analysts who receive referrals, and investigators who study links between cases. The proposed settings are UAE airports, seaports and postal and courier hubs.</p>
+<p>Once an item is flagged, officers still rely on operator interpretation of X-ray images and on laboratory confirmation to identify the substance, while the supporting evidence is recorded across separate systems. Under this uncertainty a decision can delay a legitimate traveller or parcel, or leave the basis for a seizure harder to defend. In the public sources we reviewed, we did not find a published system that automatically flags narcotics in UAE customs X-ray images; the absence of a publication does not establish the absence of a capability, and we make no claim about systems we cannot see.</p>
+<p>This paper describes NarcoLens, a proposed screening and evidence workflow that connects X-ray analysis, tablet and label checks, hyperspectral readings, officer review and laboratory referral in one case record. The remainder of the paper is organized as follows. Section II describes the architecture, Section III the design principles, Section IV the modules, Section V the prototype and its measured results, and Sections VI and VII the limitations, the validation plan and the intended pilot.</p>
+
+<h2>II.&ensp;<span class="sc">System Architecture</span></h2>
+<p>Fig. 1 (next page) shows the proposed deployment. Each of the seven entry points in the prototype runs an <i>edge AI box</i> that executes the X-ray, tablet and spectral modules. The scanner, the desk camera and the hyperspectral camera supply the inputs, and the officer sees results on a tablet and on a command dashboard. Manifest and booking data provide a pre-arrival prior. A sovereign core hosts network analytics, the supervisor and command applications, the federated-learning server and the variant predictor. Only case metadata and protected model updates leave a site.</p>
+
+<h2>III.&ensp;<span class="sc">Design Principles</span></h2>
+<p><i>A software layer on existing equipment.</i> NarcoLens runs on an edge computer beside each scanner and uses a hyperspectral camera at the inspection desk. It does not modify scanner firmware, which keeps the approach independent of the scanner vendor.</p>
+<p><i>One case per item.</i> Every bag or parcel receives a single case, identified by its tag, air waybill or parcel barcode. Each module appends evidence and a time stamp, so the record can be reviewed from the first scan to the laboratory referral.</p>
+<p><i>The officer decides.</i> The system flags, assesses and records. Clearing, re-scanning, opening or seizing an item remains an officer action, and seizures require supervisor approval.</p>
+<p><i>Explanation by default.</i> A flag is accompanied by a heatmap of the region that drove it, and the fused score shows the contribution of each module.</p>
+<p><i>Privacy and fairness.</i> Raw images stay at the site. The risk model uses route, booking and scan evidence only, and no nationality or ethnicity attribute.</p>
+
+</div>
+
+<div class="wide-page">
+  <figure style="margin:0">
+    <img src="../../architecture/narcolens-architecture.png" alt="Fig. 1">
+    <figcaption><b>Fig. 1.</b> NarcoLens system architecture. Border sites run an edge AI box beside existing scanners; M1&ndash;M3 add evidence to one inspection case per item and M5 fuses it into an explainable risk score, while the officer decides. Only case metadata and protected model updates reach the sovereign core. Evidence values shown are illustrative. All images are outputs of the prototype on synthetic data.</figcaption>
+  </figure>
+</div>
+
+<div class="cols">
+
+<h2>IV.&ensp;<span class="sc">Modules</span></h2>
+<h3>A.&ensp;M1: X-ray Concealment Segmentation</h3>
+<p>M1 is a fully convolutional network that maps a three-channel, dual-energy scan (3&times;128&times;224) to a per-pixel probability of concealed organic material (64&times;112). It uses five convolution layers, two of them dilated (rates 2 and 4) to widen the receptive field, followed by bilinear up-sampling, and has 28,753 parameters. The bag score is derived from the segmentation map, and the same map is shown to the operator as a heatmap. Training used binary cross-entropy with a Dice term [2] and a one-cycle Adam schedule.</p>
+<h3>B.&ensp;M2: Tablet, Vial and Label Verification</h3>
+<p>From an officer&rsquo;s photograph, M2 isolates each tablet and measures its physical profile (diameter, shape and colour) against a millimetre scale bar. A convolutional classifier (88,100 parameters) assigns each 48&times;48 grayscale crop to one of four imprint classes: twin-crescent, plain, scored or letter-stamped. The twin-crescent class represents the Captagon-style marking. Text recognition for Arabic and English labels and the registry check are <i>proposed</i> components; in the prototype the label text is scripted for each sample.</p>
+<h3>C.&ensp;M3: Hyperspectral Substance Identification</h3>
+<p>M3 compares the short-wave infrared spectrum (1000&ndash;2500&nbsp;nm) of each pixel with a reference library by Pearson correlation, and unmixes mixed pixels by non-negative least squares [3]. The prototype library holds eight controlled or illicit profiles and three benign ones, and these are synthetic spectra rather than laboratory measurements. M3 uses algorithms, not trained networks, which makes each match easy to inspect.</p>
+<h3>D.&ensp;M4: Prediction of Emerging Variants</h3>
+<p>M4 proposes a graph neural network that predicts the spectral signature of a new synthetic variant from the known chemistry of its family. After review by forensic chemists, validated signatures would be added to every M3 library so that a variant can be recognised before its first seizure. In the prototype this cycle is simulated, and no predictive accuracy is claimed.</p>
+<h3>E.&ensp;M5: Explainable Risk Fusion</h3>
+<p>M5 combines the available evidence with a weighted noisy-OR model [4]:</p>
+<div class="eq"><div class="e"><i>S</i> = 1 &minus; &prod;<sub><i>i</i></sub> (1 &minus; <i>w<sub>i</sub></i>&thinsp;<i>p<sub>i</sub></i>)</div><div class="n">(1)</div></div>
+<p class="ni">where <i>p<sub>i</sub></i> is the score of module <i>i</i> and <i>w<sub>i</sub></i> its weight (pre-arrival prior 0.45, M1 0.90, M2 0.85, M3 0.97). A missing module does not contribute to the product. The weights are design parameters in the prototype and have not been calibrated on real outcomes. The officer sees the fused score together with each module&rsquo;s share of it.</p>
+<h3>F.&ensp;Network Analytics</h3>
+<p>Cases are linked by shared sender, route pattern and concealment method, and connected clusters are summarised as insights for investigators, for example parcels from the same sender across two sites. The prototype demonstrates this on simulated cases.</p>
+<h3>G.&ensp;Federated Learning</h3>
+<p>After a laboratory confirms a seizure, each site fine-tunes its models locally. Updates are clipped, perturbed with noise and encrypted before reaching the core, where robust aggregation rejects outliers such as a poisoned update [5], [6]. Table I lists the privacy levels offered in the simulator.</p>
+<div class="tcap"><span class="tn">TABLE I</span>Privacy levels in the federated-learning simulator</div>
+<table><thead><tr><th>Level</th><th class="c">&epsilon;</th><th>Noise</th><th class="r">Relative learning speed</th></tr></thead><tbody>
+<tr><td>Low</td><td class="c">8</td><td>Light</td><td class="r">100%</td></tr>
+<tr><td>Medium</td><td class="c">3</td><td>Moderate</td><td class="r">80%</td></tr>
+<tr><td>High</td><td class="c">1</td><td>Strong</td><td class="r">55%</td></tr></tbody></table>
+<p class="ni note" style="border:0;margin-top:-1mm;padding:0">The &epsilon; values are typical settings. The learning-speed factor is a simulation parameter, not a measured result.</p>
+
+<h2>V.&ensp;<span class="sc">Prototype and Evaluation</span></h2>
+<p>The prototype is a web application that runs offline. M1 and M2 are trained networks executing in the browser through a dependency-free runtime that matches PyTorch operations to within 10<sup>&minus;6</sup>. M3 and M5 run as live algorithms. M4 and federated learning are simulated, and every screen states which parts are live and which are simulated.</p>
+<h3>A.&ensp;Data and Protocol</h3>
+<p>Real concealment scans were not available for this prototype, so the models were trained on synthetic data produced by the prototype&rsquo;s own renderers. This gives exact pixel-level ground truth. For M1, 6,000 training and 600 held-out bags contain random clutter, hard negatives such as dates, books, shoes and clean protein tubs, and zero to two concealments (packets, lining, a block in a protein tub, dense buttons, vials or a false bottom). For M2, 12,000 training and 1,200 held-out close-ups vary in lighting, rotation, blur and noise.</p>
+<div class="tcap"><span class="tn">TABLE II</span>Results on held-out synthetic test sets</div>
+<table><thead><tr><th>Model (test set)</th><th>Metric</th><th class="r">Result</th></tr></thead><tbody>
+<tr><td rowspan="4">M1 X-ray<br>(600 bags, 311 with concealment)</td><td>Bag-level recall</td><td class="r">100% (311/311)</td></tr>
+<tr><td>False alarms, clean bags</td><td class="r">1.7%</td></tr>
+<tr><td>Bag-level accuracy</td><td class="r">99.2%</td></tr>
+<tr><td>Pixel IoU</td><td class="r">0.916</td></tr>
+<tr><td rowspan="2">M2 imprint<br>(1,200 tablet images)</td><td>Four-class accuracy</td><td class="r">99.8%</td></tr>
+<tr><td>Twin-crescent recall</td><td class="r">100%</td></tr></tbody></table>
+<p class="ni note" style="border:0;margin-top:-1mm;padding:0">These figures describe synthetic data only and are not estimates of field performance.</p>
+<p>In the browser, on a development machine, M1 took about 0.3&nbsp;s per bag and M2 about 15&nbsp;ms per tablet crop. Production latency on edge hardware has not been measured.</p>
+<figure>
+  <div class="grid2">
+    <div><img src="../../architecture/src/xray.png"><small>(a)</small></div>
+    <div><img src="../../architecture/src/desk.png"><small>(b)</small></div>
+    <div><img src="../../architecture/src/hyper.png"><small>(c)</small></div>
+    <div><img src="../../architecture/src/net.png"><small>(d)</small></div>
+  </div>
+  <figcaption><b>Fig. 2.</b> Prototype outputs on simulated data. (a) M1: dual-energy scan with the AI concealment region. (b) M2: label, inner pouch and imprinted tablets. (c) M3: hyperspectral image with a selected pixel. (d) Network analytics: cases linked by sender, route and concealment method. Panels (a) and (b) come from the trained models, (c) from the spectral algorithms and (d) from simulated cases.</figcaption>
+</figure>
+
+<h2>VI.&ensp;<span class="sc">Limitations and Validation Plan</span></h2>
+<p>The results in Table II come from synthetic data generated by the same renderers used for training. They show that the pipeline works end to end and that the method can learn the task, but they do not predict accuracy on real scans, which differ in scanner type, bag contents and noise. The spectral library contains synthetic profiles, the fusion weights are uncalibrated, and the variant predictor and federated learning are simulations. We therefore place the work at Technology Readiness Level 3, a proof of concept.</p>
+<p>The proposed route to validation is a shadow-mode trial in which NarcoLens runs beside current inspections on real scans without making decisions. Customs would hold the data. The trial would measure recall at an agreed false-alarm rate, performance by scanner vendor, time from flag to substance assessment, officer review time per flagged item, and completeness of the evidence record. Fusion weights would then be calibrated on the observed outcomes, and the models retrained on real, labelled scans under a data-sharing agreement.</p>
+
+<h2>VII.&ensp;<span class="sc">Intended Pilot and Benefits</span></h2>
+<p>The trial would target the entry points most exposed to parcel and cargo traffic, with Dubai Customs and the federal border authorities as the natural partners. The intended benefits are hypotheses to be tested, not results: fewer unnecessary manual searches, faster assessment of a flagged item, a more complete record for laboratory referral and prosecution, and shared learning across sites. A proposed acceptance criterion for the pilot is a false-alarm rate of no more than 5% per lane. Because the system makes recommendations and the officer decides, the pilot can run without changing existing procedures.</p>
+
+<h2>VIII.&ensp;<span class="sc">Conclusion</span></h2>
+<p>NarcoLens proposes to connect X-ray analysis, tablet and label checks, hyperspectral identification and explainable risk fusion into one evidence-led workflow that keeps the officer in control. The prototype demonstrates the workflow end to end on simulated data, and its measured results come from synthetic tests only. The next step is validation on real customs scanner data in a shadow-mode pilot.</p>
+
+<h2><span class="sc">References</span></h2>
+<div class="refs"><ol>
+<li>Emirates News Agency (WAM), &ldquo;Dubai Customs cements its global leadership in combating drugs,&rdquo; Jun. 2026. [Online]. Available: https://www.wam.ae/en/article/c0x4fkf-dubai-customs-cements-its-global-leadership</li>
+<li>F. Milletari, N. Navab, and S.-A. Ahmadi, &ldquo;V-Net: Fully convolutional neural networks for volumetric medical image segmentation,&rdquo; in <i>Proc. 4th Int. Conf. 3D Vis. (3DV)</i>, 2016, pp. 565&ndash;571.</li>
+<li>C. L. Lawson and R. J. Hanson, <i>Solving Least Squares Problems</i>. Englewood Cliffs, NJ, USA: Prentice-Hall, 1974.</li>
+<li>J. Pearl, <i>Probabilistic Reasoning in Intelligent Systems</i>. San Mateo, CA, USA: Morgan Kaufmann, 1988.</li>
+<li>B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas, &ldquo;Communication-efficient learning of deep networks from decentralized data,&rdquo; in <i>Proc. 20th Int. Conf. Artif. Intell. Statist. (AISTATS)</i>, 2017, pp. 1273&ndash;1282.</li>
+<li>C. Dwork, F. McSherry, K. Nissim, and A. Smith, &ldquo;Calibrating noise to sensitivity in private data analysis,&rdquo; in <i>Proc. 3rd Theory Cryptogr. Conf. (TCC)</i>, 2006, pp. 265&ndash;284.</li>
+</ol></div>
+<div class="note"><b>Note.</b> All data in the prototype are synthetic or simulated, and the officer personas are fictional. The results reported here describe the prototype and are not estimates of field performance.</div>
+
+</div>
+</body></html>
