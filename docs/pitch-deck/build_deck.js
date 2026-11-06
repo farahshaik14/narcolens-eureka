@@ -62,7 +62,7 @@ const K = { bg: '050A14', panel: '0B1626', panel2: '0F2037', line: '1E3A52', cya
     objects: [
       { rect: { x: 0, y: 0, w: 13.333, h: 0.06, fill: { color: K.cyan, transparency: 55 } } },
       { placeholder: { options: { name: 'title', type: 'title', x: 0.6, y: 0.32, w: 12.13, h: 0.95, fontSize: 32, bold: true, color: K.white, margin: 0, valign: 'middle', align: 'left' }, text: '' } },
-      { text: { text: 'NarcoLens  ·  Presight Eureka 3.0  ·  Defense & Policing', options: { x: 0.6, y: 7.05, w: 8, h: 0.28, fontSize: 9.5, color: K.mute, margin: 0 } } }
+      { text: { text: 'NarcoLens - AI-Assisted Substance Screening for Police & Airport Customs', options: { x: 0.6, y: 7.05, w: 9, h: 0.28, fontSize: 9.5, color: K.mute, margin: 0 } } }
     ],
     slideNumber: { x: 12.23, y: 7.05, w: 0.5, h: 0.28, fontSize: 9.5, color: K.mute, align: 'right' }
   });
@@ -80,14 +80,13 @@ const K = { bg: '050A14', panel: '0B1626', panel2: '0F2037', line: '1E3A52', cya
   s.addImage({ path: A + 'cover.png', x: 0, y: 0, w: 13.333, h: 7.5 });
   T(s, 'PRESIGHT EUREKA 3.0  ·  DEFENSE & POLICING', { x: 0.7, y: 0.85, w: 5.5, h: 0.3, fontSize: 12, bold: true, color: K.cyan, charSpacing: 2 });
   T(s, 'NarcoLens', { x: 0.7, y: 1.5, w: 5.4, h: 1.0, fontSize: 56, bold: true });
-  T(s, 'See Beyond the Scan.', { x: 0.7, y: 2.55, w: 5.4, h: 0.6, fontSize: 28, bold: true, color: K.cyan });
+  T(s, 'From Scan to Evidence.', { x: 0.7, y: 2.55, w: 5.4, h: 0.6, fontSize: 28, bold: true, color: K.cyan });
   T(s, 'AI-Assisted Substance Screening for Police & Airport Customs', { x: 0.7, y: 3.4, w: 5.0, h: 0.85, fontSize: 18, color: K.white });
   T(s, 'Transforming existing customs scanners into an intelligent, explainable narcotics screening network.', { x: 0.7, y: 4.4, w: 5.0, h: 0.95, fontSize: 13, color: K.soft });
   s.addShape(pres.shapes.LINE, { x: 0.7, y: 6.2, w: 4.3, h: 0, line: { color: K.line, width: 1 } });
-  T(s, 'Presight Eureka 3.0  |  Defense & Policing', { x: 0.7, y: 6.32, w: 5.5, h: 0.3, fontSize: 11.5, color: K.soft });
-  T(s, 'Farah Shaik & Riazat Rasool', { x: 0.7, y: 6.65, w: 5.5, h: 0.3, fontSize: 13, bold: true });
+  T(s, 'Farah Shaik & Riazat Rasool', { x: 0.7, y: 6.4, w: 5.5, h: 0.3, fontSize: 14, bold: true });
   T(s, 'Simulated scan. Prototype output on synthetic data.', { x: 7.2, y: 5.2, w: 5.6, h: 0.3, fontSize: 10, italic: true, color: K.mute, align: 'right' });
-  s.addNotes(NOTE(`NarcoLens: See Beyond the Scan.
+  s.addNotes(NOTE(`NarcoLens: From Scan to Evidence.
 
 NarcoLens is an AI-assisted substance screening and evidence workflow for police and airport customs. It proposes an intelligence layer that runs beside the scanners customs already operate, and turns them into one connected, explainable narcotics screening network.
 
@@ -160,7 +159,7 @@ Detection exists. Intelligence remains fragmented.`));
   s = slide('NarcoLens adds an intelligence layer to the equipment customs already owns', 26);
   pill(s, 'EXPLAINABLE SUBSTANCE SCREENING', 0.6, 1.4, 3.6, 0.38, { fs: 11, cs: 1 });
   card(s, 0.6, 2.0, 6.4, 0.95);
-  T(s, 'Officer decision', { x: 0.85, y: 2.0, w: 5.9, h: 0.95, fontSize: 18, bold: true, valign: 'middle' });
+  T(s, 'Officer review and action', { x: 0.85, y: 2.0, w: 5.9, h: 0.95, fontSize: 18, bold: true, valign: 'middle' });
   card(s, 0.6, 3.15, 6.4, 1.15, { fill: K.cyan, tr: 82, line: K.cyan, lw: 1.25 });
   T(s, 'NarcoLens intelligence layer', { x: 0.85, y: 3.2, w: 5.9, h: 0.5, fontSize: 18, bold: true, color: K.cyan, valign: 'middle' });
   T(s, 'Software and edge AI running beside existing infrastructure', { x: 0.85, y: 3.7, w: 5.9, h: 0.5, fontSize: 12.5, color: K.soft, valign: 'middle' });
@@ -186,7 +185,7 @@ NarcoLens detects, correlates, assesses, explains and records. The officer revie
 NarcoLens does not replace the officer and never decides on its own. AI recommends. Officers decide.`));
 
   // ================= 5. FIVE LENSES =================
-  s = slide('Five AI lenses. One decision.');
+  s = slide('Five AI lenses. One assessment.');
   const lens = [
     ['M1', 'X-Ray Vision', 'AI segmentation identifies suspicious organic concealment regions in luggage or cargo.', 'AI heatmap and concealment probability', 0.6, 1.45],
     ['M2', 'Pills, Vials & Labels', 'Computer vision analyses tablet shape, size, colour, markings and packaging.', 'Tablet and package similarity assessment', 0.6, 3.2],
@@ -203,7 +202,7 @@ NarcoLens does not replace the officer and never decides on its own. AI recommen
   });
   card(s, 8.78, 4.95, 3.95, 1.6, { fill: K.em, tr: 88, line: K.em });
   T(s, 'Explainable assessment', { x: 8.98, y: 5.1, w: 3.6, h: 0.4, fontSize: 15, bold: true, color: K.em });
-  T(s, 'One fused score with the contribution of every signal. The officer reviews and decides.', { x: 8.98, y: 5.55, w: 3.55, h: 0.9, fontSize: 12, color: K.soft });
+  T(s, 'One fused score with the contribution of every signal. The officer reviews and acts.', { x: 8.98, y: 5.55, w: 3.55, h: 0.9, fontSize: 12, color: K.soft });
   // hub
   card(s, 4.95, 2.85, 3.43, 2.3, { fill: K.cyan, tr: 84, line: K.cyan, lw: 1.5 });
   T(s, 'NarcoLens Risk Engine', { x: 5.1, y: 3.05, w: 3.13, h: 0.5, fontSize: 18, bold: true, color: K.cyan, align: 'center' });
@@ -225,11 +224,11 @@ M5 combines the available evidence into one risk score and shows how much each s
 One item. Five intelligence layers. One explainable assessment.`));
 
   // ================= 6. JOURNEY =================
-  s = slide('From bag to decision');
+  s = slide('From first scan to laboratory referral', 32);
   const jr = [
     ['Scan', 'A bag, cargo item or parcel enters an existing scanner.', 'LuScanLine'], ['Detect', 'NarcoLens highlights suspicious concealment regions.', 'LuCrosshair'],
     ['Inspect', 'The officer opens or photographs the object when required.', 'LuCamera'], ['Identify', 'Tablet analysis and hyperspectral screening add evidence.', 'LuAtom'],
-    ['Fuse', 'Evidence is combined into an explainable risk score.', 'LuGauge'], ['Decide', 'The officer chooses the action.', 'LuUserCheck'],
+    ['Fuse', 'Evidence is combined into an explainable risk score.', 'LuGauge'], ['Act', 'The officer chooses the action. Seizures need supervisor approval.', 'LuUserCheck'],
     ['Record', 'Every action joins one timestamped evidence trail.', 'LuClipboardList'], ['Confirm', 'Laboratory results can confirm the substance and feed validated learning.', 'LuFlaskConical']
   ];
   for (let i = 0; i < 8; i++) {
@@ -242,16 +241,16 @@ One item. Five intelligence layers. One explainable assessment.`));
     if (i === 5) ['CLEAR', 'RE-SCAN', 'OPEN', 'SEIZE'].forEach((t, j) => pill(s, t, x + 0.2 + (j % 2) * 1.25, y + 1.6 + Math.floor(j / 2) * 0.4, 1.15, 0.32, { fs: 10, bold: true, tr: 82 }));
     if (i % 4 < 3) arrow(s, x + 2.9, y + 1.17, 0.16, 0.16);
   }
-  s.addNotes(NOTE(`This is the journey of one item, from bag to decision.
+  s.addNotes(NOTE(`This is the journey of one item, from first scan to laboratory referral.
 
 One, scan: a passenger bag, cargo item or parcel enters an existing scanner. Two, detect: NarcoLens highlights suspicious concealment regions. Three, inspect: the officer opens or photographs the object when required. Four, identify: tablet analysis and hyperspectral screening add evidence. Five, fuse: the evidence is combined into an explainable risk score.
 
-Six, decide: the officer chooses clear, re-scan, open or seize. Seven, record: every action becomes part of one timestamped evidence trail. Eight, confirm: laboratory results can later confirm the substance and feed validated learning.
+Six, act: the officer chooses clear, re-scan, open or seize, and a seizure needs supervisor approval. Seven, record: every action becomes part of one timestamped evidence trail. Eight, confirm: laboratory results can later confirm the substance and feed validated learning.
 
 Cargo and postal parcels follow the same flow, with the air waybill or parcel barcode as the case identifier. The prototype demonstrates this flow on simulated data.`));
 
   // ================= 7. EXPLAINABLE =================
-  s = slide('Every flag must answer one question: "Why?"', 32);
+  s = slide('Every alert comes with its evidence', 32);
   s.addImage({ path: A + 'xray_dark.png', x: 0.6, y: 1.45, w: 6.2, h: 6.2 * 754 / 1300, shadow: glow() });
   T(s, 'Illustrative case. Simulated scan with the AI heatmap.', { x: 0.6, y: 5.07, w: 6.2, h: 0.25, fontSize: 10, italic: true, color: K.mute });
   s.addImage({ path: A + 'spec.png', x: 0.6, y: 5.4, w: 3.0, h: 3.0 * 350 / 814 });
@@ -273,14 +272,40 @@ Cargo and postal parcels follow the same flow, with the air waybill or parcel ba
   });
   card(s, 7.1, 5.3, 5.63, 1.5, { fill: K.cyan, tr: 90, line: K.cyanDim });
   T(s, 'Evidence, not just an alert', { x: 7.3, y: 5.36, w: 5.2, h: 0.35, fontSize: 15, bold: true, color: K.cyan });
-  T(s, bullets(['Faster officer review', 'More defensible decisions', 'Stronger evidence continuity', 'Easier supervisor review and laboratory referral']), { x: 7.3, y: 5.75, w: 5.2, h: 1.05, fontSize: 11.5, color: K.soft });
-  s.addNotes(NOTE(`Every flag must answer one question: why?
+  T(s, bullets(['Faster officer review', 'Findings that stand up to review', 'Stronger evidence continuity', 'Easier supervisor review and laboratory referral']), { x: 7.3, y: 5.75, w: 5.2, h: 1.05, fontSize: 11.5, color: K.soft });
+  s.addNotes(NOTE(`Every alert should come with its evidence.
 
 On the left is a simulated scan, with the AI heatmap showing where the model looked. Below it is the spectrum matched against the library, and the officer's timeline.
 
 On the right is the fused risk score. In this illustrative example it is 92. Each bar shows one signal: pre-arrival risk, X-ray concealment, tablet and package analysis, and hyperspectral match. The score is a weighted noisy-OR over the evidence that is available. The values here are illustrative, and the weights are design parameters that have not yet been calibrated on real outcomes.
 
-NarcoLens gives evidence, not just an alert. That means faster officer review, more defensible decisions, stronger evidence continuity, and easier supervisor review and laboratory referral.`));
+NarcoLens gives evidence, not just an alert. That means faster officer review, findings that stand up to review, stronger evidence continuity, and easier supervisor review and laboratory referral.`));
+
+  // ================= 7b. ROLES =================
+  s = slide('Two roles. One accountable workflow.', 32);
+  const roles = [
+    ['inspector.png', 'LuUserCheck', 'Inspector mode', 'Frontline screening and evidence',
+      ['Screens bags on the live lane and reviews the AI heatmap', 'Checks tablets and labels and runs hyperspectral scans', 'Reviews the fused score and the evidence timeline', 'Asks NarcoLens why an item was flagged', 'Clears, re-scans or opens the item and refers a seizure for sign-off']],
+    ['supervisor.png', 'LuShieldCheck', 'Supervisor mode', 'Oversight and accountability',
+      ['Approves seizures once the laboratory confirms the substance', 'Reviews cases where the AI flagged and the officer cleared', 'Compares screening and flag rates across entry points', 'Reads the audit log of officer, laboratory and supervisor actions']]
+  ];
+  for (let i = 0; i < 2; i++) {
+    const x = 0.6 + i * 6.18, r = roles[i];
+    s.addImage({ path: A + r[0], x, y: 1.4, w: 5.95, h: 5.95 * 540 / 1190, shadow: glow() });
+    await ico(s, r[1], x, 4.2, 0.5);
+    T(s, r[2], { x: x + 0.65, y: 4.17, w: 3.2, h: 0.32, fontSize: 17, bold: true });
+    T(s, r[3], { x: x + 0.65, y: 4.47, w: 4.6, h: 0.25, fontSize: 11, color: K.cyan });
+    T(s, bullets(r[4], { fontSize: 11.5, color: K.soft }), { x, y: 4.85, w: 5.95, h: 1.55 });
+  }
+  card(s, 0.6, 6.45, 12.13, 0.5, { fill: K.cyan, tr: 90, line: K.cyanDim });
+  T(s, 'Every action by either role is time-stamped in one audit trail. Demo accounts in the prototype are fictional.', { x: 0.85, y: 6.45, w: 11.6, h: 0.5, fontSize: 12.5, bold: true, valign: 'middle' });
+  s.addNotes(NOTE(`NarcoLens has two roles, so the workflow stays accountable from the scanner to the laboratory.
+
+Inspector mode is for frontline screening. The inspector screens bags on the live lane and reviews the AI heatmap, checks tablets and labels, runs hyperspectral scans, and reviews the fused score and the evidence timeline. An assistant can explain why an item was flagged. The inspector clears, re-scans or opens the item, and refers a seizure for sign-off.
+
+Supervisor mode is for oversight. The supervisor approves seizures once the laboratory confirms the substance. The supervisor also reviews cases where the AI flagged an item and the officer cleared it, which keeps a human check on both sides and can feed model calibration. The screen compares screening and flag rates across entry points, and an audit log lists officer, laboratory and supervisor actions.
+
+Every action is time-stamped in one audit trail. The accounts in the prototype are fictional demo accounts.`));
 
   // ================= 8. CONNECTED INTELLIGENCE =================
   s = slide('A seizure at one entry point can strengthen awareness across the network', 26);
@@ -391,7 +416,7 @@ The next major milestone is validation using real customs scanner data. Until th
 
   // ================= 12. PILOT =================
   s = slide('Start invisible. Measure everything.', 36);
-  T(s, 'Shadow mode: NarcoLens operates beside existing customs procedures and makes no operational decisions.', { x: 0.6, y: 1.3, w: 12.13, h: 0.35, fontSize: 14, color: K.soft });
+  T(s, 'Shadow mode: NarcoLens operates beside existing customs procedures and takes no operational action.', { x: 0.6, y: 1.3, w: 12.13, h: 0.35, fontSize: 14, color: K.soft });
   const ph = [['Data preparation', 'Controlled integration with existing scanner outputs'], ['Shadow-mode operation', 'Runs on real scanner traffic with no operational effect'], ['Measure', 'Performance and officer workflow against real outcomes'], ['Calibrate and retrain', 'Risk fusion tuned and models retrained on validated real-world data'], ['Controlled deployment', 'Operational use after agreed targets are met']];
   ph.forEach((p, i) => {
     const x = 0.6 + i * 2.48;
@@ -414,7 +439,7 @@ The next major milestone is validation using real customs scanner data. Until th
   T(s, 'A proposed acceptance criterion, not an achieved real-world result.', { x: 8.65, y: 6.25, w: 3.9, h: 0.5, fontSize: 10.5, italic: true, color: K.soft });
   s.addNotes(NOTE(`Our proposal is a shadow-mode pilot: start invisible, and measure everything.
 
-In shadow mode NarcoLens operates beside existing customs procedures and makes no operational decisions, so there is no effect on passengers or on current workflow.
+In shadow mode NarcoLens operates beside existing customs procedures and takes no operational action, so there is no effect on passengers or on current workflow.
 
 Phase one is data preparation and controlled integration. Phase two is shadow-mode operation on real scanner traffic. In phase three we measure detection recall, false-alarm rate, performance by scanner vendor, officer review time, assessment time and evidence-record completeness. In phase four we calibrate the risk fusion and retrain on validated real-world data. Phase five is controlled operational deployment.
 
@@ -494,16 +519,16 @@ Detect earlier. Understand faster. Learn together.`));
   }
   card(s, 0.6, 4.35, 12.13, 2.45, { fill: K.cyan, tr: 90, line: K.cyanDim });
   T(s, 'NarcoLens', { x: 0.6, y: 4.5, w: 12.13, h: 0.8, fontSize: 40, bold: true, align: 'center', valign: 'middle' });
-  T(s, 'See Beyond the Scan.', { x: 0.6, y: 5.3, w: 12.13, h: 0.5, fontSize: 24, bold: true, color: K.cyan, align: 'center' });
+  T(s, 'From Scan to Evidence.', { x: 0.6, y: 5.3, w: 12.13, h: 0.5, fontSize: 24, bold: true, color: K.cyan, align: 'center' });
   T(s, 'AI intelligence for the officers protecting our borders.', { x: 0.6, y: 5.85, w: 12.13, h: 0.4, fontSize: 16, color: K.soft, align: 'center' });
-  T(s, 'Farah Shaik & Riazat Rasool   ·   Presight Eureka 3.0   ·   Defense & Policing', { x: 0.6, y: 6.35, w: 12.13, h: 0.3, fontSize: 12, color: K.white, align: 'center' });
+  T(s, 'Farah Shaik & Riazat Rasool', { x: 0.6, y: 6.35, w: 12.13, h: 0.3, fontSize: 12, color: K.white, align: 'center' });
   s.addNotes(NOTE(`Help us take NarcoLens from simulation to the border.
 
 We are seeking three things. Access: anonymised or controlled real scanner data for validation. Expertise: collaboration with customs officers, forensic laboratories and anti-narcotics specialists. And a pilot: a controlled shadow-mode deployment at a selected customs environment.
 
 We are not claiming any partnership, approval or deployment today. What we have is a working proof of concept, an honest maturity level, and a clear route to validation.
 
-NarcoLens. See Beyond the Scan. AI intelligence for the officers protecting our borders. Thank you. We are Farah Shaik and Riazat Rasool.`));
+NarcoLens. From Scan to Evidence. AI intelligence for the officers protecting our borders. Thank you. We are Farah Shaik and Riazat Rasool.`));
 
   await pres.writeFile({ fileName: OUT });
   console.log('written', OUT);
