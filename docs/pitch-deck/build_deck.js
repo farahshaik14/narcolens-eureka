@@ -78,7 +78,7 @@ const K = { bg: '050A14', panel: '0B1626', panel2: '0F2037', line: '1E3A52', cya
   // ================= 1. COVER =================
   let s = pres.addSlide({ masterName: 'COVER' });
   s.addImage({ path: A + 'cover.png', x: 0, y: 0, w: 13.333, h: 7.5 });
-  T(s, 'PRESIGHT EUREKA 3.0  ·  DEFENSE & POLICING', { x: 0.7, y: 0.85, w: 5.5, h: 0.3, fontSize: 12, bold: true, color: K.cyan, charSpacing: 2 });
+  T(s, 'PRESIGHT EUREKA 3.0', { x: 0.7, y: 0.85, w: 5.5, h: 0.3, fontSize: 12, bold: true, color: K.cyan, charSpacing: 2 });
   T(s, 'NarcoLens', { x: 0.7, y: 1.5, w: 5.4, h: 1.0, fontSize: 56, bold: true });
   T(s, 'From Scan to Evidence.', { x: 0.7, y: 2.55, w: 5.4, h: 0.6, fontSize: 28, bold: true, color: K.cyan });
   T(s, 'AI-Assisted Substance Screening for Police & Airport Customs', { x: 0.7, y: 3.4, w: 5.0, h: 0.85, fontSize: 18, color: K.white });
@@ -92,7 +92,7 @@ NarcoLens is an AI-assisted substance screening and evidence workflow for police
 
 The image is an output of our working prototype: a simulated dual-energy X-ray scan, with the AI heatmap marking a suspicious concealment region for the officer to review.
 
-We are Farah Shaik and Riazat Rasool, presenting under the Defense and Policing theme.`));
+We are Farah Shaik and Riazat Rasool, presenting at Presight Eureka 3.0.`));
 
   // ================= 2. THREAT =================
   s = slide('Drug concealment is evolving faster than traditional inspection workflows', 26);
@@ -416,8 +416,8 @@ The next major milestone is validation using real customs scanner data. Until th
 
   // ================= 12. PILOT =================
   s = slide('Start invisible. Measure everything.', 36);
-  T(s, 'Shadow mode: NarcoLens operates beside existing customs procedures and takes no operational action.', { x: 0.6, y: 1.3, w: 12.13, h: 0.35, fontSize: 14, color: K.soft });
-  const ph = [['Data preparation', 'Controlled integration with existing scanner outputs'], ['Shadow-mode operation', 'Runs on real scanner traffic with no operational effect'], ['Measure', 'Performance and officer workflow against real outcomes'], ['Calibrate and retrain', 'Risk fusion tuned and models retrained on validated real-world data'], ['Controlled deployment', 'Operational use after agreed targets are met']];
+  T(s, 'Side-by-side trial: NarcoLens runs beside existing customs procedures and takes no operational action.', { x: 0.6, y: 1.3, w: 12.13, h: 0.35, fontSize: 14, color: K.soft });
+  const ph = [['Data preparation', 'Controlled integration with existing scanner outputs'], ['Side-by-side trial', 'Runs on real scanner traffic with no operational effect'], ['Measure', 'Performance and officer workflow against real outcomes'], ['Calibrate and retrain', 'Risk fusion tuned and models retrained on validated real-world data'], ['Controlled deployment', 'Operational use after agreed targets are met']];
   ph.forEach((p, i) => {
     const x = 0.6 + i * 2.48;
     card(s, x, 1.85, 2.2, 2.3, { fill: i === 1 ? K.cyan : K.panel, tr: i === 1 ? 86 : 0, line: i === 1 ? K.cyan : K.line });
@@ -437,11 +437,11 @@ The next major milestone is validation using real customs scanner data. Until th
   T(s, '≤ 5%', { x: 8.65, y: 4.9, w: 3.9, h: 0.95, fontSize: 52, bold: true, valign: 'middle' });
   T(s, 'false alarms per lane', { x: 8.65, y: 5.85, w: 3.9, h: 0.35, fontSize: 15, bold: true });
   T(s, 'A proposed acceptance criterion, not an achieved real-world result.', { x: 8.65, y: 6.25, w: 3.9, h: 0.5, fontSize: 10.5, italic: true, color: K.soft });
-  s.addNotes(NOTE(`Our proposal is a shadow-mode pilot: start invisible, and measure everything.
+  s.addNotes(NOTE(`Our proposal is a side-by-side pilot: start invisible, and measure everything.
 
-In shadow mode NarcoLens operates beside existing customs procedures and takes no operational action, so there is no effect on passengers or on current workflow.
+In a side-by-side trial NarcoLens operates beside existing customs procedures and takes no operational action, so there is no effect on passengers or on current workflow.
 
-Phase one is data preparation and controlled integration. Phase two is shadow-mode operation on real scanner traffic. In phase three we measure detection recall, false-alarm rate, performance by scanner vendor, officer review time, assessment time and evidence-record completeness. In phase four we calibrate the risk fusion and retrain on validated real-world data. Phase five is controlled operational deployment.
+Phase one is data preparation and controlled integration. Phase two is the side-by-side trial on real scanner traffic. In phase three we measure detection recall, false-alarm rate, performance by scanner vendor, officer review time, assessment time and evidence-record completeness. In phase four we calibrate the risk fusion and retrain on validated real-world data. Phase five is controlled operational deployment.
 
 A proposed acceptance target is no more than five percent false alarms per lane. That is a proposed pilot criterion. It is not an achieved real-world result.`));
 
@@ -509,7 +509,7 @@ Detect earlier. Understand faster. Learn together.`));
 
   // ================= 16. ASK =================
   s = slide('Help us take NarcoLens from simulation to the border', 30);
-  const ask = [['ACCESS', 'Anonymised or controlled real scanner data for validation.', 'LuDatabase'], ['EXPERTISE', 'Collaboration with customs officers, forensic laboratories and anti-narcotics specialists.', 'LuUsers'], ['PILOT', 'A controlled shadow-mode deployment at a selected customs environment.', 'LuRadar']];
+  const ask = [['ACCESS', 'Anonymised or controlled real scanner data for validation.', 'LuDatabase'], ['EXPERTISE', 'Collaboration with customs officers, forensic laboratories and anti-narcotics specialists.', 'LuUsers'], ['PILOT', 'A controlled side-by-side trial at a selected customs environment.', 'LuRadar']];
   for (let i = 0; i < 3; i++) {
     const x = 0.6 + i * 4.115;
     card(s, x, 1.5, 3.9, 2.55, { fill: K.panel2 });
@@ -524,7 +524,7 @@ Detect earlier. Understand faster. Learn together.`));
   T(s, 'Farah Shaik & Riazat Rasool', { x: 0.6, y: 6.35, w: 12.13, h: 0.3, fontSize: 12, color: K.white, align: 'center' });
   s.addNotes(NOTE(`Help us take NarcoLens from simulation to the border.
 
-We are seeking three things. Access: anonymised or controlled real scanner data for validation. Expertise: collaboration with customs officers, forensic laboratories and anti-narcotics specialists. And a pilot: a controlled shadow-mode deployment at a selected customs environment.
+We are seeking three things. Access: anonymised or controlled real scanner data for validation. Expertise: collaboration with customs officers, forensic laboratories and anti-narcotics specialists. And a pilot: a controlled side-by-side trial at a selected customs environment.
 
 We are not claiming any partnership, approval or deployment today. What we have is a working proof of concept, an honest maturity level, and a clear route to validation.
 

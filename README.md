@@ -1,6 +1,6 @@
 # NarcoLens
 
-AI software that turns the UAE's existing customs X-ray scanners and inspection desks into one connected drug-detection network. Built for Presight Eureka 3.0 (Defense & Policing).
+AI software that turns the UAE's existing customs X-ray scanners and inspection desks into one connected drug-detection network. Built for Presight Eureka 3.0.
 
 All data in this project is synthetic or simulated. The officer personas are fictional.
 

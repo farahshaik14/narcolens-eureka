@@ -1,6 +1,5 @@
 # NarcoLens – Clickable Prototype (Presight Eureka 3.0)
 
-**Theme:** Defense & Policing
 **Type:** Prototype (web build, simulated data)
 
 NarcoLens is an AI software platform that turns the UAE's existing customs X-ray scanners and inspection desks into one connected drug-detection network. Every bag or parcel gets one **Inspection Case**, and five AI modules add evidence to it:
