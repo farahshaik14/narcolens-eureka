@@ -10,7 +10,8 @@
   .title { text-align: center; margin: 0 0 4mm; }
   .title h1 { font-size: 19pt; line-height: 1.2; margin: 0 0 3mm; font-weight: 700; }
   .title .sub { font-family: Inter, Arial, sans-serif; font-size: 9.5pt; color: #444; letter-spacing: .02em; }
-  .title .by { font-size: 10pt; margin-top: 3mm; }
+  .title .tagline { font-size: 11.5pt; font-style: italic; color: #222; margin: 0 0 3mm; }
+  .title .by { font-size: 10.5pt; margin: 0 0 1.5mm; }
   .abstract { margin: 5mm 8mm 4mm; font-size: 9.6pt; }
   .abstract b.h { font-family: Inter, Arial, sans-serif; font-size: 9pt; letter-spacing: .1em; text-transform: uppercase; }
   .kw { margin: 2mm 8mm 5mm; font-size: 9.2pt; }
@@ -36,23 +37,26 @@
   .eq { text-align: center; margin: 2mm 0 3mm; font-size: 10.5pt; }
   .note { font-size: 8.8pt; color: #333; }
   ol.refs { padding-left: 5mm; font-size: 8.8pt; margin: 0; } ol.refs li { margin-bottom: 1.2mm; }
+  .note-box { margin-top: 5mm; padding-top: 2.5mm; border-top: 0.5pt solid #888; font-size: 8.8pt; color: #222; }
+  .note-box b { font-family: Inter, Arial, sans-serif; }
   .foot { font-family: Inter, Arial, sans-serif; font-size: 7.6pt; color: #666; text-align: center; margin-top: 5mm; }
   .status { font-family: Inter, Arial, sans-serif; font-size: 7.8pt; padding: 0.3mm 1.4mm; border: 0.5pt solid #888; border-radius: 1mm; white-space: nowrap; }
 </style></head><body>
 
 <div class="title">
   <h1>NarcoLens &mdash; AI-Assisted Substance Screening<br>for Police and Airport Customs</h1>
-  <div class="sub">Technical overview &nbsp;&middot;&nbsp; Presight Eureka 3.0 &nbsp;&middot;&nbsp; Defense &amp; Policing &nbsp;&middot;&nbsp; November 2026</div>
-  <div class="by">NarcoLens team</div>
+  <div class="tagline">A proposed intelligence layer for existing customs scanners and inspection desks</div>
+  <div class="by">NarcoLens team: Farah Shaik and Riazat Rasool</div>
+  <div class="sub">Technical paper &nbsp;&middot;&nbsp; Presight Eureka 3.0 &nbsp;&middot;&nbsp; Defense &amp; Policing &nbsp;&middot;&nbsp; November 2026</div>
 </div>
 
 <div class="abstract"><b class="h">Abstract.</b>
-Customs officers and police must reach a fast, defensible decision on every suspicious item, yet identifying a substance still depends on operator interpretation of X-ray images and on laboratory confirmation. NarcoLens proposes an intelligence layer for the scanners and inspection desks that customs already operate. It opens one case per bag or parcel and collects evidence from five modules: X-ray concealment segmentation, tablet and label verification, hyperspectral substance identification, prediction of emerging synthetic variants, and explainable risk fusion. The officer decides, and each action is recorded for laboratory referral. Federated learning aims to let sites improve together without sharing raw images. A working prototype demonstrates the full workflow on simulated data. On held-out synthetic tests, the X-ray model flagged all 311 concealment bags with 1.7% false alarms on clean bags, and the tablet model reached 99.8% accuracy on 1,200 images. Validation on real scanner data is the next step.</div>
-<div class="kw"><b>Keywords</b> &nbsp;Computer Vision, X-ray Screening, Hyperspectral Imaging, Trustworthy AI, Federated Learning, Narcotics Detection, Edge AI, Border Security, Customs, Evidence Management</div>
+Customs officers and police must reach a fast, defensible decision on every suspicious item, yet identifying a substance still depends on operator interpretation of X-ray images and on laboratory confirmation. NarcoLens proposes an intelligence layer for the scanners and inspection desks that customs already operate. It opens one case per bag or parcel and collects evidence from five modules: X-ray concealment segmentation, tablet and label verification, hyperspectral substance identification, prediction of emerging synthetic variants, and explainable risk fusion. The officer decides, and each action is recorded for laboratory referral. It is intended for customs officers, police anti-narcotics teams, supervisors and laboratory analysts. Federated learning aims to let sites improve together without sharing raw images. A working prototype demonstrates the full workflow on simulated data. On held-out synthetic tests, the X-ray model flagged all 311 concealment bags with 1.7% false alarms on clean bags, and the tablet model reached 99.8% accuracy on 1,200 images. Validation on real scanner data is the next step.</div>
 <hr class="rule">
 
 <h2>1&ensp;Introduction</h2>
 <p>The UAE already deploys advanced inspection systems, AI-driven risk analysis and K9 units at its borders. Dubai Customs reported 502 seizures, 406 kg of narcotic and psychotropic substances and more than 2.3 million tablets between January and May 2026 [1], which indicates the volume of findings that officers must assess. Concealment methods continue to change, from tablets pressed into clothing buttons to drugs blended into protein powder.</p>
+<p><b>Intended users.</b> NarcoLens is designed for the people who make and review these decisions: customs inspectors and X-ray operators who screen items, police anti-narcotics officers who handle seizures, supervisors who approve them, laboratory analysts who receive referrals, and investigators who study links between cases. The proposed settings are UAE airports, seaports and postal and courier hubs.</p>
 <p>Once an item is flagged, officers still rely on operator interpretation of X-ray images and on laboratory confirmation to identify the substance, while the supporting evidence is recorded across separate systems. Under this uncertainty a decision can delay a legitimate traveller or parcel, or leave the basis for a seizure harder to defend. In the public sources we reviewed, we did not find a published system that automatically flags narcotics in UAE customs X-ray images; the absence of a publication does not establish the absence of a capability, and we make no claim about systems we cannot see.</p>
 <p>This paper describes NarcoLens, a proposed screening and evidence workflow that connects X-ray analysis, tablet and label checks, hyperspectral readings, officer review and laboratory referral in one case record. Section 2 states the design principles, Section 3 the architecture, Section 4 the modules, Section 5 the prototype and its measured results, and Sections 6 and 7 the limitations, the validation plan and the intended pilot.</p>
 
@@ -131,7 +135,7 @@ Customs officers and police must reach a fast, defensible decision on every susp
 <li>B. McMahan et al. &ldquo;Communication-efficient learning of deep networks from decentralized data.&rdquo; AISTATS, 2017.</li>
 <li>C. Dwork, F. McSherry, K. Nissim, A. Smith. &ldquo;Calibrating noise to sensitivity in private data analysis.&rdquo; TCC, 2006.</li>
 </ol>
-<div class="foot">NarcoLens technical overview &middot; all prototype data are synthetic or simulated &middot; officer personas are fictional</div>
+<div class="note-box"><b>Note.</b> All data in the prototype are synthetic or simulated, and the officer personas are fictional. The results reported here describe the prototype and are not estimates of field performance.</div>
 <div class="wide-page">
   <figure style="margin:0">
     <img src="../../architecture/narcolens-architecture.png" alt="Figure 1">
