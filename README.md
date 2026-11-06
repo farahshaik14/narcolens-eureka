@@ -18,6 +18,7 @@ High-resolution PNG and vector PDF: [`docs/architecture/`](docs/architecture/). 
 | `narcolens-ml/` | Training code for the M1 X-ray and M2 tablet models that run live in the prototype |
 | `narcolens-screenshots/` | Screenshots for the submission |
 | `narcolens-pitch-deck.pptx` / `.pdf` | Pitch deck with speaker notes |
+| `docs/paper/` | Technical paper (PDF and editable source) |
 | `docs/architecture/` | System architecture figure (PNG, PDF and editable source) |
 | `dev-server.py` | Local dev server with live reload |
 
