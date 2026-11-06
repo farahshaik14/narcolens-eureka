@@ -4,6 +4,12 @@ AI software that turns the UAE's existing customs X-ray scanners and inspection 
 
 All data in this project is synthetic or simulated. The officer personas are fictional.
 
+## Architecture
+
+![NarcoLens system architecture](docs/architecture/narcolens-architecture.png)
+
+High-resolution PNG and vector PDF: [`docs/architecture/`](docs/architecture/). The figure is built from `docs/architecture/src/architecture.html`; every image in it is an output of the prototype.
+
 ## What's here
 
 | Folder / file | What it is |
@@ -12,6 +18,7 @@ All data in this project is synthetic or simulated. The officer personas are fic
 | `narcolens-ml/` | Training code for the M1 X-ray and M2 tablet models that run live in the prototype |
 | `narcolens-screenshots/` | Screenshots for the submission |
 | `narcolens-pitch-deck.pptx` / `.pdf` | Pitch deck with speaker notes |
+| `docs/architecture/` | System architecture figure (PNG, PDF and editable source) |
 | `dev-server.py` | Local dev server with live reload |
 
 ## Run it locally
