@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """NarcoLens local dev server with live reload.
 
-Serves the prototype at http://localhost:8080 and reloads the browser
+Serves the prototype at http://localhost:6001 and reloads the browser
 automatically whenever a file in the prototype folder changes.
 
-    python3 dev-server.py            # port 8080
+    python3 dev-server.py            # port 6001
     python3 dev-server.py 9000       # another port
 
 No installs needed: standard-library Python 3 only.
@@ -15,7 +15,7 @@ import socketserver
 import sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'narcolens-prototype')
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 6001
 
 # Small script added to every HTML page: it asks the server for the latest
 # change time once a second and reloads the page when it moves.

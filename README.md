@@ -29,7 +29,7 @@ You only need Python 3.
 python3 dev-server.py
 ```
 
-Open http://localhost:8080. The page reloads by itself whenever you save a file in `narcolens-prototype/`.
+Open http://localhost:6001. The page reloads by itself whenever you save a file in `narcolens-prototype/`.
 
 Demo sign-in: officer `MOHAP-DC-0427` / `demo`, or supervisor `DC-SUP-0112` / `demo`.
 
