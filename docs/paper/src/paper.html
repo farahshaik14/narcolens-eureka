@@ -23,7 +23,7 @@
   figure { margin: 3mm 0 4mm; break-inside: avoid; }
   figcaption { font-size: 8.8pt; line-height: 1.35; margin-top: 1.5mm; color: #222; }
   figcaption b { font-family: Inter, Arial, sans-serif; }
-  .wide-page { page: wide; break-before: page; }
+  .wide-page { page: wide; break-before: page; break-after: page; }
   .wide-page img { width: 100%; display: block; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
   .grid2 .cell img { width: 100%; display: block; border: 0.4pt solid #bbb; }
@@ -58,18 +58,23 @@ Customs officers and police must reach a fast, defensible decision on every susp
 <p>The UAE already deploys advanced inspection systems, AI-driven risk analysis and K9 units at its borders. Dubai Customs reported 502 seizures, 406 kg of narcotic and psychotropic substances and more than 2.3 million tablets between January and May 2026 [1], which indicates the volume of findings that officers must assess. Concealment methods continue to change, from tablets pressed into clothing buttons to drugs blended into protein powder.</p>
 <p><b>Intended users.</b> NarcoLens is designed for the people who make and review these decisions: customs inspectors and X-ray operators who screen items, police anti-narcotics officers who handle seizures, supervisors who approve them, laboratory analysts who receive referrals, and investigators who study links between cases. The proposed settings are UAE airports, seaports and postal and courier hubs.</p>
 <p>Once an item is flagged, officers still rely on operator interpretation of X-ray images and on laboratory confirmation to identify the substance, while the supporting evidence is recorded across separate systems. Under this uncertainty a decision can delay a legitimate traveller or parcel, or leave the basis for a seizure harder to defend. In the public sources we reviewed, we did not find a published system that automatically flags narcotics in UAE customs X-ray images; the absence of a publication does not establish the absence of a capability, and we make no claim about systems we cannot see.</p>
-<p>This paper describes NarcoLens, a proposed screening and evidence workflow that connects X-ray analysis, tablet and label checks, hyperspectral readings, officer review and laboratory referral in one case record. Section 2 states the design principles, Section 3 the architecture, Section 4 the modules, Section 5 the prototype and its measured results, and Sections 6 and 7 the limitations, the validation plan and the intended pilot.</p>
+<p>This paper describes NarcoLens, a proposed screening and evidence workflow that connects X-ray analysis, tablet and label checks, hyperspectral readings, officer review and laboratory referral in one case record. Section 2 describes the architecture, Section 3 the design principles, Section 4 the modules, Section 5 the prototype and its measured results, and Sections 6 and 7 the limitations, the validation plan and the intended pilot.</p>
 
-<h2>2&ensp;Design principles</h2>
+<h2>2&ensp;System architecture</h2>
+<p>Figure 1 (next page) shows the proposed deployment. Each of the seven entry points in the prototype runs an <i>edge AI box</i> that executes the X-ray, tablet and spectral modules. The scanner, the desk camera and the hyperspectral camera supply the inputs, and the officer sees results on a tablet and on a command dashboard. Manifest and booking data provide a pre-arrival prior. A sovereign core hosts network analytics, the supervisor and command applications, the federated-learning server and the variant predictor. Only case metadata and protected model updates leave a site.</p>
+
+<div class="wide-page">
+  <figure style="margin:0">
+    <img src="../../architecture/narcolens-architecture.png" alt="Figure 1">
+  </figure>
+</div>
+<h2>3&ensp;Design principles</h2>
 <p><b>A software layer on existing equipment.</b> NarcoLens runs on an edge computer beside each scanner and uses a hyperspectral camera at the inspection desk. It does not modify scanner firmware, which keeps the approach independent of the scanner vendor.</p>
 <p><b>One case per item.</b> Every bag or parcel receives a single case, identified by its tag, air waybill or parcel barcode. Each module appends evidence and a time stamp, so the record can be reviewed from the first scan to the laboratory referral.</p>
 <p><b>The officer decides.</b> The system flags, assesses and records. Clearing, re-scanning, opening or seizing an item remains an officer action, and seizures require supervisor approval.</p>
 <p><b>Explanation by default.</b> A flag is accompanied by a heatmap of the region that drove it, and the fused score shows the contribution of each module.</p>
 <p><b>Privacy and fairness.</b> Raw images stay at the site. The risk model uses route, booking and scan evidence only, and no nationality or ethnicity attribute.</p>
 
-
-<h2>3&ensp;System architecture</h2>
-<p>Figure 1 (last page) shows the proposed deployment. Each of the seven entry points in the prototype runs an <i>edge AI box</i> that executes the X-ray, tablet and spectral modules. The scanner, the desk camera and the hyperspectral camera supply the inputs, and the officer sees results on a tablet and on a command dashboard. Manifest and booking data provide a pre-arrival prior. A sovereign core hosts network analytics, the supervisor and command applications, the federated-learning server and the variant predictor. Only case metadata and protected model updates leave a site.</p>
 
 <h2>4&ensp;Modules</h2>
 <h3>4.1&ensp;M1: X-ray concealment segmentation</h3>
@@ -136,9 +141,4 @@ Customs officers and police must reach a fast, defensible decision on every susp
 <li>C. Dwork, F. McSherry, K. Nissim, A. Smith. &ldquo;Calibrating noise to sensitivity in private data analysis.&rdquo; TCC, 2006.</li>
 </ol>
 <div class="note-box"><b>Note.</b> All data in the prototype are synthetic or simulated, and the officer personas are fictional. The results reported here describe the prototype and are not estimates of field performance.</div>
-<div class="wide-page">
-  <figure style="margin:0">
-    <img src="../../architecture/narcolens-architecture.png" alt="Figure 1">
-  </figure>
-</div>
 </body></html>
