@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NarcoLens Prototype</title>
+  <meta name="description" content="NarcoLens – AI software that turns UAE customs X-ray scanners and inspection desks into one connected drug-detection network. Concept prototype on simulated data.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <div class="login" id="login" hidden>
+    <form class="login-card" id="loginForm" autocomplete="off" novalidate>
+      <svg class="logo login-logo" viewBox="0 0 40 40" aria-hidden="true">
+        <circle class="draw" cx="17" cy="17" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+        <path class="draw d2" d="M8 17h4l2.5-5 4 10 2.5-5h4" fill="none" stroke="#2dd4bf" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="draw d3" d="M26 26l9 9" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+      </svg>
+      <h1>NarcoLens</h1>
+      <p class="login-sub">Drug Detection Network &middot; Officer sign-in</p>
+      <div class="role-pick" role="group" aria-label="Demo account"><button type="button" data-role="officer" class="on">Inspector</button><button type="button" data-role="supervisor">Supervisor</button></div>
+      <label class="field">Officer ID<input id="loginId" value="MOHAP-DC-0427" spellcheck="false"></label>
+      <label class="field">Password<input id="loginPw" type="password" value="demo"></label>
+      <p class="login-err" id="loginErr" hidden>Incorrect officer ID or password. Use the demo account below.</p>
+      <button class="btn primary block" type="submit" id="loginBtn">Sign in</button>
+      <div class="demo-acct" id="demoAcct">
+        <span class="avatar">MN</span>
+        <div><b>Mariam Al Noor</b><small>Pharmaceutical Control Inspector &middot; MOHAP Drug Control Dept</small><small class="demo-note">Demo account &middot; fictional officer &middot; ID MOHAP-DC-0427 &middot; password <code>demo</code></small></div>
+      </div>
+    </form>
+  </div>
+
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" id="brandLink" href="#dashboard" aria-label="NarcoLens – go to Command Dashboard">
+        <svg class="logo" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="17" cy="17" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+          <path d="M8 17h4l2.5-5 4 10 2.5-5h4" fill="none" stroke="#2dd4bf" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 26l9 9" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <b>NarcoLens</b>
+          <small>AI drug-detection network</small>
+        </div>
+      </a>
+      <nav id="nav" aria-label="Screens">
+        <a href="#dashboard" data-screen="dashboard"><span class="num" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/></svg></span><span>Command Dashboard</span></a>
+        <a href="#lane" data-screen="lane"><span class="num">M1</span><span>Live Lane &middot; X-ray Vision</span></a>
+        <a href="#desk" data-screen="desk"><span class="num">M2</span><span>Inspection Desk &middot; Pills &amp; Labels</span></a>
+        <a href="#hyper" data-screen="hyper"><span class="num">M3</span><span>Hyperspectral ID</span></a>
+        <a href="#predict" data-screen="predict"><span class="num">M4</span><span>Novel-Drug Predictor</span></a>
+        <a href="#case" data-screen="case"><span class="num">M5</span><span>Inspection Case &middot; Fusion</span></a>
+        <a href="#network" data-screen="network"><span class="num">NET</span><span>Network analytics</span></a>
+        <a href="#learn" data-screen="learn"><span class="num">FL</span><span>Learning Loop</span></a>
+        <a href="#review" data-screen="review" class="sup-only"><span class="num">SUP</span><span>Supervisor review</span></a>
+      </nav>
+      <div class="officer" id="officerChip">
+        <span class="avatar">MN</span>
+        <div class="officer-txt"><b id="offName">Mariam Al Noor</b><small id="offRole">MOHAP &middot; DXB T3 Desk 2</small></div>
+        <button class="sign-out" id="signOut" type="button" title="Sign out" aria-label="Sign out"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="titles">
+          <h1 id="screenTitle">Command Dashboard</h1>
+          <p id="screenSub"></p>
+          <div class="badges" id="badges"></div>
+        </div>
+        <div class="top-actions">
+          <span class="clock" id="clock" title="Simulated local time at Dubai"></span>
+          <span class="demo-chip" id="demoChip" hidden><b id="demoStep">Step 1 of 8</b><span id="demoTime">0:00</span><i><b id="demoBar"></b></i></span>
+          <button class="btn primary" id="demoBtn" type="button">&#9654; Run full demo</button>
+          <button class="btn ghost icon" id="themeBtn" type="button" aria-label="Toggle light / dark theme" title="Toggle theme"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><circle cx="10" cy="10" r="7.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 2.5a7.5 7.5 0 0 1 0 15z" fill="currentColor"/></svg></button>
+        </div>
+      </header>
+
+      <!-- 01 DASHBOARD -->
+      <section class="screen" id="screen-dashboard">
+        <div class="kpis" id="kpis"></div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-h"><h3>UAE entry points running NarcoLens</h3><span class="muted small">Click a site to zoom in</span><span class="pill live">&#9679; Live</span></div>
+            <div class="map-wrap"><svg id="map" class="map" viewBox="0 0 600 340" role="img" aria-label="Map of UAE entry points"></svg><div class="site-card" id="siteCard" hidden></div></div>
+            <div class="legend"><span><i class="dot ok"></i>Bag / parcel cleared</span><span><i class="dot danger"></i>AI flag raised</span></div>
+          </div>
+          <div class="stack">
+            <div class="card">
+              <div class="card-h"><h3>Inspection queue</h3><span class="muted small" id="queueCount"></span></div>
+              <ul class="queue" id="queue"></ul>
+            </div>
+            <div class="card">
+              <div class="card-h"><h3>Live event log</h3></div>
+              <ul class="log" id="log"></ul>
+              <div id="netTip"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="heatCard" data-noi18n></div>
+        <div class="card">
+          <div class="card-h"><h3>How the five modules work together</h3><span class="muted small">Click a step to open it</span></div>
+          <div class="flow" id="flow">
+            <button class="flow-step" data-go="case"><b>M5</b><span>Pre-arrival risk score</span><small>route &amp; booking patterns</small></button>
+            <span class="flow-arrow">&rarr;</span>
+            <button class="flow-step" data-go="lane"><b>M1</b><span>X-ray vision</span><small>edge AI on existing scanner</small></button>
+            <span class="flow-arrow">&rarr;</span>
+            <button class="flow-step hub" data-go="case"><b>CASE</b><span>One inspection case</span><small>per bag tag &middot; M5 fuses evidence</small></button>
+            <span class="flow-arrow">&rarr;</span>
+            <button class="flow-step" data-go="desk"><b>M2</b><span>Pills, vials &amp; labels</span><small>officer photo + OCR</small></button>
+            <span class="flow-arrow">&rarr;</span>
+            <button class="flow-step" data-go="hyper"><b>M3</b><span>Hyperspectral ID</span><small>chemistry through packaging</small></button>
+            <span class="flow-arrow">&larr;</span>
+            <button class="flow-step" data-go="predict"><b>M4</b><span>Novel-drug predictor</span><small>feeds the M3 library</small></button>
+            <span class="flow-arrow">&rarr;</span>
+            <button class="flow-step" data-go="learn"><b>LOOP</b><span>Officer + lab confirm</span><small>federated retraining</small></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- M1 LANE -->
+      <section class="screen" id="screen-lane" hidden>
+        <div class="mode-tabs" id="laneModes" role="tablist">
+          <button type="button" data-mode="belt" class="active">Belt &middot; demo bags</button>
+          <button type="button" data-mode="build">Build your own bag</button>
+          <button type="button" data-mode="upload">Upload a scan</button>
+        </div>
+        <div class="bag-strip" id="bagStrip" aria-label="Bags on the belt"></div>
+        <div class="builder card" id="builder" hidden>
+          <div class="palette" id="palClutter"><span class="pal-lbl">Add everyday items</span></div>
+          <div class="palette" id="palHide"><span class="pal-lbl">Hide drugs</span></div>
+          <div class="row">
+            <button class="btn" id="bRandom" type="button">Randomise bag</button>
+            <button class="btn" id="bClear" type="button">Empty bag</button>
+            <span class="muted small">Drag items to move them. The AI only sees pixels &ndash; never item names.</span>
+          </div>
+        </div>
+        <div class="upload card" id="uploadBox" hidden>
+          <label class="btn primary">Choose an image&hellip;<input type="file" id="uploadInput" accept="image/*" hidden></label>
+          <span class="muted small">Experimental: the model was trained on synthetic dual-energy scans, so real X-ray photos are outside its training data. Results are shown as-is.</span>
+        </div>
+        <div class="grid-lane">
+          <div class="card">
+            <div class="card-h">
+              <h3>X-ray &middot; <span id="laneTag">select a bag</span></h3>
+              <span class="switches"><label class="switch"><input type="checkbox" id="overlayToggle" checked> AI heatmap</label><label class="switch" id="truthWrap"><input type="checkbox" id="truthToggle"> Ground truth</label></span>
+            </div>
+            <div class="xray-wrap">
+              <canvas id="xray" width="760" height="440" aria-label="Simulated dual-energy X-ray image"></canvas>
+              <div class="xray-legend"><span><i class="sw o"></i>Organic</span><span><i class="sw m"></i>Mixed</span><span><i class="sw b"></i>Metal</span></div>
+            </div>
+            <div class="row">
+              <button class="btn primary" id="scanNext" type="button">Scan next bag</button>
+              <button class="btn" id="laneAuto" type="button">Auto belt: off</button>
+              <button class="btn primary" id="bScan" type="button" hidden>Scan with AI</button>
+              <span class="muted small">M1 model inference in this browser: <b id="latency">&ndash;</b></span>
+            </div>
+          </div>
+          <div class="card" id="laneResult"></div>
+        </div>
+      </section>
+
+      <!-- M5 CASE -->
+      <section class="screen" id="screen-case" hidden>
+        <div class="card case-head" id="caseHead"></div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-h"><h3>Evidence timeline</h3><span class="muted small">every module writes to the same case</span></div>
+            <ol class="timeline" id="timeline"></ol>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3>M5 fusion score</h3><span class="muted small">explainable</span></div>
+            <div id="fusion"></div>
+            <div class="actions-row" id="caseActions"></div>
+            <p class="fair" id="fairNote">&#9878; Risk factors use bag, route, booking-timing and sensor evidence only. Nationality, ethnicity, religion and gender are never model inputs. The officer makes every decision; the lab result is the legal proof.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUPERVISOR REVIEW -->
+      <section class="screen" id="screen-review" hidden data-noi18n>
+        <div class="kpis three" id="supKpis"></div>
+        <div class="grid-2">
+          <div class="stack"><div class="card" id="supQueue"></div><div class="card" id="supOverrides"></div></div>
+          <div class="stack"><div class="card" id="supSites"></div><div class="card" id="supAudit"></div></div>
+        </div>
+      </section>
+
+      <!-- EVIDENCE PACK -->
+      <section class="screen" id="screen-report" hidden data-noi18n>
+        <div class="report-actions"><button class="btn primary" id="repPrint" type="button">&#128424; Print / Save as PDF</button><button class="btn" id="repBack" type="button">&larr; Back to case</button></div>
+        <article class="card report" id="report"></article>
+      </section>
+
+      <!-- NETWORK ANALYTICS -->
+      <section class="screen" id="screen-network" hidden data-noi18n>
+        <div class="kpis three" id="netKpis"></div>
+        <div class="grid-lane">
+          <div class="card net-card">
+            <div class="net-toolbar" id="netToolbar"></div>
+            <div class="net-wrap"><svg id="netSvg" viewBox="0 0 760 460" role="img" aria-label="Case link graph"></svg></div>
+            <div class="net-legend" id="netLegend"></div>
+            <div class="net-detail" id="netDetail"></div>
+          </div>
+          <div class="card" id="netInsights"></div>
+        </div>
+      </section>
+
+      <!-- M2 DESK -->
+      <section class="screen" id="screen-desk" hidden>
+        <div class="pick" id="samplePick"></div>
+        <div class="grid-lane">
+          <div class="card">
+            <div class="card-h"><h3>Officer photo</h3><span class="muted small">Tablet camera &middot; Inspection desk 2</span></div>
+            <div class="photo" id="deskPhoto"></div>
+            <div class="row">
+              <button class="btn primary" id="deskAnalyse" type="button">Analyse photo</button>
+              <button class="btn" id="deskAttach" type="button" disabled>Attach to case</button>
+            </div>
+          </div>
+          <div class="card" id="deskResult"></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-h"><h3>Tablets in this photo &rarr; M2 imprint model</h3><span class="badge live">Live model</span></div>
+            <div class="crops" id="crops"><p class="muted small">Press <b>Analyse photo</b> to classify every tablet crop.</p></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3>Imprint pad &middot; test the model yourself</h3><span class="badge live">Live model</span></div>
+            <div class="pad-wrap">
+              <canvas id="pad" width="240" height="240" aria-label="Draw a tablet imprint"></canvas>
+              <div class="pad-side">
+                <p class="muted small">Draw an imprint on the tablet with your mouse or finger &ndash; e.g. two crescents <b>( )</b>, a line, or a letter.</p>
+                <div id="padResult"></div>
+                <div class="row">
+                  <button class="btn" id="padClear" type="button">Clear</button>
+                  <button class="btn" id="padRandom" type="button">Random example</button>
+                  <label class="btn">Upload close-up<input type="file" id="padUpload" accept="image/*" hidden></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- M3 HYPER -->
+      <section class="screen" id="screen-hyper" hidden>
+        <div class="pick" id="hyperPick"></div>
+        <div class="grid-lane">
+          <div class="card">
+            <div class="card-h"><h3>Hyperspectral image &middot; false colour</h3><label class="switch"><input type="checkbox" id="hyperMap" checked> AI substance map</label></div>
+            <div class="hyper-wrap">
+              <canvas id="hyperCanvas" class="pix" width="480" height="320" aria-label="Simulated hyperspectral image"></canvas>
+            </div>
+            <div class="row">
+              <button class="btn primary" id="hyperScan" type="button">Auto-scan</button>
+              <button class="btn" id="hyperAttach" type="button" disabled>Attach to case</button>
+              <span class="muted small">Tip: click any pixel to see its spectrum</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h3>Spectrum vs. drug library</h3><span class="muted small" id="pxInfo">no pixel selected</span></div>
+            <canvas id="specCanvas" width="560" height="240" aria-label="Spectrum chart"></canvas>
+            <div class="spec-legend"><span><i class="ln px"></i>Selected pixel</span><span><i class="ln ref"></i>Best library match</span></div>
+            <div id="hyperResult"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- M4 PREDICT -->
+      <section class="screen" id="screen-predict" hidden>
+        <div class="kpis three" id="predKpis"></div>
+        <div class="card">
+          <div class="card-h">
+            <h3>Predicted synthetic-drug variants</h3>
+            <div class="card-actions">
+              <span class="info-anchor">
+                <button class="info-btn" type="button" data-info="m4Info" aria-haspopup="dialog" aria-expanded="false" aria-controls="m4Info">
+                  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor"/></svg>
+                  <span>How M4 works</span>
+                </button>
+                <div class="info-pop" id="m4Info" role="dialog" aria-label="How M4 works" tabindex="-1" hidden>
+                  <div class="info-pop-h"><b>How M4 works</b><button class="info-x" type="button" aria-label="Close">&times;</button></div>
+                  <ol class="steps plain">
+                    <li><b>Watch the trend.</b> Seizure data, lab results and international early-warning feeds show which drug families are mutating.</li>
+                    <li><b>Predict the fingerprint.</b> A graph neural network predicts the spectrum a new variant would produce, from its family's known chemistry.</li>
+                    <li><b>Validate.</b> Forensic chemists approve each prediction against reference samples.</li>
+                    <li><b>Push to M3.</b> Every hyperspectral camera in the network can now recognise the variant &ndash; before its first seizure.</li>
+                  </ol>
+                </div>
+              </span>
+              <button class="btn primary" id="predRun" type="button">Run prediction cycle</button>
+            </div>
+          </div>
+          <div class="table-wrap"><table class="tbl" id="predTable"></table></div>
+          <p class="muted small">Chemical structures are withheld in this interface. Predictions are used only to extend the detection library and are validated against lab reference samples before going live.</p>
+        </div>
+      </section>
+
+      <!-- LEARNING LOOP -->
+      <section class="screen" id="screen-learn" hidden data-noi18n>
+        <div class="kpis three" id="fedKpis"></div>
+        <div class="grid-lane">
+          <div class="card">
+            <div class="fed-controls">
+              <button class="btn primary" id="learnGo" type="button">&#9654; Run 1 round</button>
+              <button class="btn" id="fedAuto" type="button">Auto-run rounds</button>
+              <span id="fedPriv" class="fed-priv"></span>
+              <span class="info-anchor fed-info">
+                <button class="info-btn icon-only" id="fedInfoBtn" type="button" data-info="fedInfo" aria-haspopup="dialog" aria-expanded="false" aria-controls="fedInfo">
+                  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor"/></svg>
+                </button>
+                <div class="info-pop" id="fedInfo" role="dialog" tabindex="-1" hidden>
+                  <div class="info-pop-h"><b id="fedInfoTitle"></b><button class="info-x" type="button" aria-label="Close">&times;</button></div>
+                  <div id="fedInfoBody"></div>
+                </div>
+              </span>
+              <label class="nt-chip" style="--c:#ef4444"><input type="checkbox" id="fedPoison"><i></i><span id="fedPoisonLbl">Simulate a poisoned update</span></label>
+            </div>
+            <div class="fed-steps" id="fedSteps"></div>
+            <svg id="fedNet" class="fednet" viewBox="0 0 600 360" role="img" aria-label="Federated learning network"></svg>
+            <p class="fed-status"><span id="learnStatus"></span></p>
+            <p class="fed-gain" id="fedGain"></p>
+            <div id="fedSite"></div>
+          </div>
+          <div class="stack">
+            <div class="card" id="learnCase"></div>
+            <div class="card"><div class="card-h"><h3 id="fedChartH">Recall per round</h3></div><div id="fedChart"></div></div>
+            <div class="card"><div class="card-h"><h3 id="fedLogH">Round log</h3></div><ol class="fed-log" id="fedLog"></ol></div>
+          </div>
+        </div>
+      </section>
+      <!-- CHALLENGE -->
+      <section class="screen" id="screen-challenge" hidden>
+        <div class="grid-lane">
+          <div class="card">
+            <div class="card-h"><h3 id="chRound">Round 1 of 5</h3><span class="muted small" id="chHint">Click where you think drugs are hidden &ndash; or press &ldquo;Looks clean&rdquo;.</span></div>
+            <div class="xray-wrap"><canvas id="chCanvas" width="760" height="440" aria-label="X-ray to inspect"></canvas></div>
+            <div class="row">
+              <button class="btn" id="chClean" type="button">Looks clean</button>
+              <button class="btn primary" id="chNext" type="button" hidden>Next bag &rarr;</button>
+              <button class="btn ghost" id="chRestart" type="button">Restart</button>
+            </div>
+          </div>
+          <div class="card" id="chBoard"></div>
+        </div>
+      </section>
+
+      <!-- AI MODELS -->
+      <section class="screen" id="screen-models" hidden>
+        <div class="grid-2 even">
+          <div class="card" id="cardM1"></div>
+          <div class="card" id="cardM2"></div>
+        </div>
+        <div class="card" id="cardOthers"></div>
+      </section>
+      <footer class="disclaimer">Live AI models trained on synthetic data &middot; Presight Eureka 3.0 prototype &middot; No real passenger, bag or seizure data is used &middot; The demo officer is fictional</footer>
+    </main>
+  </div>
+
+  <div class="narration" id="narration" hidden aria-live="polite">
+    <span class="step" id="narrStep"></span>
+    <span id="narrText"></span>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/map_uae.js"></script>
+  <script src="js/xray.js"></script>
+  <script src="js/nn.js"></script>
+  <script src="js/models/models.js"></script>
+  <script src="js/pills.js"></script>
+  <script src="js/hyperspectral.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/network.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/federated.js"></script>
+  <script src="js/addons.js"></script>
+  <script src="js/extras.js"></script>
+</body>
+</html>
