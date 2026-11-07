@@ -1189,3 +1189,18 @@ html[dir="rtl"] .fed-info .info-pop { text-align: right; }
 .card:has(.info-pop:not([hidden])) { position: relative; z-index: 60; }
 .fed-info .info-pop { background: var(--panel); }
 @media (max-width: 900px) { body:has(.info-pop:not([hidden])) .fan { display: none; } }
+
+/* ======================= v14: swarm rebuild (peer-to-peer model recovery, simulated) ======================= */
+.swarm-btn { border-color: var(--accent); color: var(--accent); }
+.swarm-btn:hover:not(:disabled) { background: var(--accent-soft); }
+.fednet .fnode.dmg .node { stroke: var(--danger); stroke-width: 3.5; fill: var(--danger-soft); }
+.fednet .fnode.dmg .fn-ver { fill: var(--danger); font-size: 9.5px; }
+.fednet .fnode.dmg .fn-ring { opacity: 1; stroke: var(--danger); stroke-dasharray: 3 4; }
+.fednet .fn-prog { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset .35s ease; }
+.fednet .fnode.rebuilding .node { animation: trainPulse .45s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.fednet.swarming .link { opacity: .12; }
+.fednet .plink { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 5 5; opacity: .9; animation: plinkMove 1s linear infinite; }
+@keyframes plinkMove { to { stroke-dashoffset: -20; } }
+.fednet .fcore.bypass .core { opacity: .3; }
+.fednet .fcore.bypass .core-lbl { opacity: .55; }
+@media (prefers-reduced-motion: reduce) { .fednet .plink, .fednet .fnode.rebuilding .node { animation: none; } }
